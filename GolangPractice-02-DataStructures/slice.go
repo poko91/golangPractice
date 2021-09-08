@@ -55,4 +55,17 @@ func main() {
 	fmt.Println("\n9. Accessing parts of Data:")
 	fmt.Println("Index 0-3", names[:3], "\nIndex 2-last", names[2:])
 
+	// Append a slice to an existing slice
+	x := []int{1, 2, 3, 4, 5}
+	y := []int{6, 7, 8, 9, 10}
+	x = append(x, y...)
+
+	fmt.Println("\n10. Append a slice to an existing slice:", x)
+
+	// Append a slice
+	ab := make([]int, 0, 3)
+	fmt.Println(ab, len(ab), cap(ab))
+	ab = append(ab, 2, 2, 3, 4, 1, 2)
+	fmt.Println(ab, len(ab), cap(ab))
+
 }
