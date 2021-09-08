@@ -62,10 +62,23 @@ func main() {
 
 	fmt.Println("\n10. Append a slice to an existing slice:", x)
 
-	// Append a slice
-	ab := make([]int, 0, 3)
-	fmt.Println(ab, len(ab), cap(ab))
-	ab = append(ab, 2, 2, 3, 4, 1, 2)
-	fmt.Println(ab, len(ab), cap(ab))
+	// range through slice elements
+	fmt.Println("\n11. Loop through Slice using For and Range : ")
+	fmt.Println("----Example 1 ----")
+	for index, value := range names {
+		fmt.Println(index, " = ", value)
+	}
+
+	fmt.Println("\n----Example 2 ----")
+	for _, value := range names {
+		fmt.Println(value)
+	}
+
+	fmt.Println("\n----Example 3 ----")
+	j := 0
+	for range names {
+		fmt.Println(names[j])
+		j++
+	}
 
 }
