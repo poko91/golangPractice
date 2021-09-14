@@ -33,4 +33,21 @@ func main() {
 	p4.age = 23
 	fmt.Println(p4)
 
+	// using the current struct as a field in another struct
+	type employee struct {
+		person person
+		id     int
+		salary int
+	}
+
+	//populate fields in the new struct
+	emp1 := employee{
+		person: person{"John", 34},
+		id:     1038,
+		salary: 3500}
+
+	fmt.Println(emp1)
+	// to access fields of nested structs use the following syntax
+	fmt.Println(emp1.person.name)
+
 }
