@@ -8,27 +8,24 @@ import (
 func main() {
 	c := make(chan int)
 	var wg sync.WaitGroup
+	wg.Add(2)
 
 	go func() {
-		wg.Add(1)
 		for i := 0; i < 10; i++ {
 			c <- i
 		}
-		wg.Wait()
-		close(c)
+		wg.Done()
 	}()
 
 	go func() {
-		wg.Add(1)
 		for i := 10; i < 20; i++ {
 			c <- i
 		}
-		wg.Wait()
-		close(c)
+		wg.Done()
 	}()
 
 	go func() {
-		wg.Done()
+		wg.Wait()
 		close(c)
 	}()
 
