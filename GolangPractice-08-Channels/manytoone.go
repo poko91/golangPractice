@@ -27,10 +27,10 @@ func main() {
 		close(c)
 	}()
 
-	go func(){
+	go func() {
 		wg.Done()
 		close(c)
-	}
+	}()
 
 	for n := range c {
 		fmt.Println(n)
