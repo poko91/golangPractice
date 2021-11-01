@@ -3,21 +3,42 @@ package main
 import "fmt"
 
 func main() {
-	c := factorial(4)
-	for n := range c {
+
+	in := gen()
+	f := factorial(in)
+	for n := range f {
 		fmt.Println(n)
 	}
 }
 
-func factorial(n int) chan int {
+func gen() <-chan int {
 	out := make(chan int)
-	total := 1
 	go func() {
-		for i := n; i > 0; i-- {
-			total *= n
+		for i := 0; i < 10; i++ {
+			for j := 1; j < 10; j++ {
+				out <- j
+			}
 		}
-		out <- total
 		close(out)
 	}()
 	return out
+}
+
+func factorial(in <-chan int) <-chan int {
+	out := make(chan int)
+	go func() {
+		for n := range in {
+			out <- fact(n)
+		}
+		close(out)
+	}()
+	return out
+}
+
+func fact(n int) int {
+	total := 1
+	for i := n; i > 0; i-- {
+		total *= i
+	}
+	return total
 }
